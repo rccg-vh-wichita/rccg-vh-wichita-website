@@ -76,20 +76,18 @@ Edit the `recurringEvents` array in `src/data/site.ts`. The events page delibera
 
 The included `.github/workflows/deploy-pages.yml` workflow builds and deploys the site whenever `main` changes.
 
-The workflow currently publishes the preview at
-`https://rccg-vh-wichita.github.io/rccg-vh-wichita-website/`. It sets
-`DEPLOY_TARGET=github-pages`, which makes Astro add the project path to internal
-links and assets. The workflow also omits `CNAME` from the preview artifact so
-the existing public church domain is not changed accidentally.
+The production address is `https://www.rccgvhwichita.com`. GitHub Pages is
+configured to use that custom domain, and `public/CNAME` records the same
+canonical address in the repository.
 
-When the church is ready to move the custom domain:
+The Wix-managed DNS must contain the following website records:
 
-1. Open repository **Settings → Pages**.
-2. Under **Build and deployment**, select **GitHub Actions**.
-3. Confirm `public/CNAME` contains `www.rccgvhwichita.com`.
-4. Remove `DEPLOY_TARGET: github-pages` and the step that removes `dist/CNAME`
-   from the workflow.
-5. Configure the custom-domain DNS only after the preview deployment has been tested.
+- Four apex A records pointing to GitHub Pages: `185.199.108.153`,
+  `185.199.109.153`, `185.199.110.153`, and `185.199.111.153`.
+- One `www` CNAME pointing directly to `rccg-vh-wichita.github.io`.
+
+Do not remove or replace MX, email-authentication TXT, or unrelated service
+records when changing the website records.
 
 ## Verification
 
