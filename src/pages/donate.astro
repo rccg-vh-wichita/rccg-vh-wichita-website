@@ -1,89 +1,126 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/PageHero.astro';
 import VisitCTA from '../components/VisitCTA.astro';
-import Arrow from '../components/Arrow.astro';
 import prayer from '../assets/images/prayer.jpg';
 import { church } from '../data/site';
+
+const zelleEmail = 'rccgvictoryhousewichita1@gmail.com';
+const sharefaithUrl = 'https://giving.sharefaith.com/rccgvh';
 ---
 
 <BaseLayout
   title="Giving | RCCG Victory House Wichita"
-  description="Support the ministry and community outreach of RCCG Victory House Wichita through generous giving."
+  description="Give to RCCG Victory House Wichita by Zelle, Sharefaith, mail, or in person and support the ministry and outreach of our church."
 >
-  <PageHero
-    eyebrow="Giving"
-    title="Support our church"
-    intro="Your giving supports the ministry of RCCG Victory House Wichita and helps us serve families in our church and in the Wichita community."
-    dark={true}
-  />
-
-  <section class="giving-intro section">
-    <div class="wrap giving-grid">
-      <div class="quote reveal">
-        <p>2 Corinthians 9:7</p>
-        <blockquote>
-          “Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.”
-        </blockquote>
+  <section class="giving-hero">
+    <div class="giving-hero-orbit" aria-hidden="true"></div>
+    <div class="wrap giving-hero-inner">
+      <div class="giving-hero-copy">
+        <p class="eyebrow">Giving</p>
+        <h1>Support our<br />church</h1>
+        <p>Thank you for supporting the work God is doing through Victory House.</p>
       </div>
-      <div class="giving-copy reveal">
-        <p class="eyebrow">Why we give</p>
-        <h2 class="heading">Why we give</h2>
-        <p>
-          Giving helps sustain weekly ministry, discipleship, worship, care for our church family,
-          and community outreach including clothing and diaper giveaways.
-        </p>
-        <p>
-          We encourage every giver to use the method that is most convenient and to include a clear memo when designating a gift.
-        </p>
+
+      <div class="giving-hero-note" aria-label="Preferred ways to give">
+        <span>Online giving</span>
+        <strong>Zelle or Sharefaith</strong>
+        <a href="#give-online">See giving options</a>
       </div>
     </div>
   </section>
 
-  <section class="ways section">
-    <div class="wrap ways-grid">
-      <div class="ways-heading reveal">
-        <p class="eyebrow">Ways to give</p>
-        <h2 class="title">Ways you can give</h2>
-      </div>
-      <ol class="ways-list">
-        <li class="way reveal">
-          <span>01</span>
-          <div>
-            <h3>Give in person</h3>
-            <p>Offerings can be given during Sunday worship and other church gatherings.</p>
+  <section class="scripture" aria-labelledby="giving-scripture">
+    <div class="wrap scripture-inner reveal">
+      <p id="giving-scripture">2 Corinthians 9:7</p>
+      <blockquote>
+        “Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.”
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="online-giving section" id="give-online">
+    <div class="wrap online-layout">
+      <header class="online-heading reveal">
+        <p class="eyebrow">Give online</p>
+        <h2>Choose the way<br />that works for you.</h2>
+        <p>Zelle and Sharefaith are the easiest ways to give online.</p>
+      </header>
+
+      <div class="online-options">
+        <article class="giving-option reveal">
+          <div class="option-number" aria-hidden="true">01</div>
+          <div class="option-copy">
+            <p class="option-label">From your bank or Zelle app</p>
+            <h3>Give with Zelle</h3>
+            <p>Send your gift to the Victory House giving email:</p>
+            <div class="zelle-address">
+              <span>{zelleEmail}</span>
+              <button type="button" data-copy-zelle data-email={zelleEmail}>
+                <span data-copy-label>Copy email</span>
+              </button>
+            </div>
+            <p class="option-note">Please double-check the email before sending your gift.</p>
           </div>
-        </li>
-        <li class="way reveal">
-          <span>02</span>
+        </article>
+
+        <article class="giving-option reveal">
+          <div class="option-number" aria-hidden="true">02</div>
+          <div class="option-copy">
+            <p class="option-label">Secure online giving</p>
+            <h3>Give through Sharefaith</h3>
+            <p>Use our Sharefaith giving page to make your gift online.</p>
+            <a class="primary-action" href={sharefaithUrl} target="_blank" rel="noopener noreferrer">
+              Open Sharefaith
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="other-ways section-sm">
+    <div class="wrap other-layout">
+      <div class="other-heading reveal">
+        <p class="eyebrow">Other ways to give</p>
+        <h2>Mail or in person.</h2>
+      </div>
+
+      <div class="other-list">
+        <article class="other-way reveal">
+          <span>By mail</span>
           <div>
-            <h3>Give by mail</h3>
-            <p>Make checks payable to RCCG Victory House and mail them to:</p>
+            <h3>Mail a check</h3>
+            <p>Make checks payable to <strong>RCCG Victory House</strong> and mail them to:</p>
             <address>1701 S Sedgwick St<br />Wichita, KS 67213</address>
           </div>
-        </li>
-        <li class="way reveal">
-          <span>03</span>
+        </article>
+
+        <article class="other-way reveal">
+          <span>In person</span>
           <div>
-            <h3>Give electronically</h3>
-            <p>
-              Victory House accepts electronic gifts. Contact the church office for the current giving details before sending your first gift.
-            </p>
-            <a class="text-link" href={`mailto:${church.email}?subject=Electronic%20giving%20details`}>Request giving details <Arrow /></a>
+            <h3>Give during service</h3>
+            <p>Offerings can be given during Sunday worship and other church gatherings.</p>
           </div>
-        </li>
-      </ol>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section class="impact">
-    <div class="impact-media">
-      <Image src={prayer} alt="Victory House members worshipping together" width={1900} widths={[720, 1200, 1900]} sizes="100vw" />
+  <section class="thanks">
+    <div class="thanks-media">
+      <Image
+        src={prayer}
+        alt="Victory House members worshipping together"
+        width={1900}
+        widths={[720, 1200, 1900]}
+        sizes="100vw"
+      />
     </div>
-    <div class="wrap impact-copy reveal">
+    <div class="wrap thanks-inner reveal">
       <p class="eyebrow">Thank you</p>
-      <h2>Your support helps<br />RCCG Victory House<br /><em>serve others.</em></h2>
+      <h2>Thank you<br />for giving.</h2>
+      <p>Your generosity helps make ministry and community outreach possible.</p>
     </div>
   </section>
 
@@ -91,9 +128,9 @@ import { church } from '../data/site';
     <div class="wrap questions-inner reveal">
       <div>
         <p class="eyebrow">Questions about giving?</p>
-        <h2 class="heading">We’re happy to help.</h2>
+        <h2>We’re happy to help.</h2>
       </div>
-      <div>
+      <div class="contact-links">
         <a href={`mailto:${church.email}`}>{church.email}</a>
         <a href="tel:+13162672673">{church.phone}</a>
       </div>
@@ -103,144 +140,422 @@ import { church } from '../data/site';
   <VisitCTA />
 </BaseLayout>
 
+<script>
+  const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-zelle]');
+  const copyLabel = copyButton?.querySelector<HTMLElement>('[data-copy-label]');
+
+  copyButton?.addEventListener('click', async () => {
+    const email = copyButton.dataset.email;
+    if (!email) return;
+
+    try {
+      await navigator.clipboard.writeText(email);
+      copyButton.classList.add('is-copied');
+      if (copyLabel) copyLabel.textContent = 'Email copied';
+      window.setTimeout(() => {
+        copyButton.classList.remove('is-copied');
+        if (copyLabel) copyLabel.textContent = 'Copy email';
+      }, 2200);
+    } catch {
+      window.location.href = `mailto:${email}`;
+    }
+  });
+</script>
+
 <style>
-  .giving-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.65fr;
-    align-items: start;
-    gap: clamp(54px, 10vw, 150px);
+  .giving-hero {
+    position: relative;
+    min-height: clamp(500px, 68vh, 680px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    color: var(--white);
+    background: var(--forest-deep);
   }
 
-  .quote > p {
-    margin: 0 0 25px;
+  .giving-hero::before {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 78% 42%, rgba(227, 163, 75, 0.14), transparent 26%),
+      linear-gradient(120deg, transparent 52%, rgba(14, 169, 158, 0.05));
+    content: '';
+  }
+
+  .giving-hero-orbit {
+    position: absolute;
+    top: 13%;
+    right: 8%;
+    width: min(35vw, 430px);
+    aspect-ratio: 1;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 64px rgba(227, 163, 75, 0.045),
+      0 0 0 128px rgba(255, 255, 255, 0.025);
+    animation: breathe 7s ease-in-out infinite;
+  }
+
+  .giving-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    align-items: end;
+    padding-top: 150px;
+    padding-bottom: clamp(58px, 7vw, 92px);
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 60px;
+  }
+
+  .giving-hero-copy {
+    animation: hero-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .giving-hero .eyebrow {
+    color: var(--gold);
+  }
+
+  .giving-hero h1 {
+    max-width: 780px;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 7.6vw, 7.8rem);
+    font-weight: 600;
+    letter-spacing: -0.06em;
+    line-height: 0.84;
+  }
+
+  .giving-hero-copy > p:last-child {
+    max-width: 560px;
+    margin: 28px 0 0;
+    font-size: clamp(1rem, 1.6vw, 1.22rem);
+    line-height: 1.55;
+    opacity: 0.78;
+  }
+
+  .giving-hero-note {
+    width: min(28vw, 330px);
+    padding: 22px 0 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.26);
+    animation: hero-rise 700ms 140ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .giving-hero-note span,
+  .giving-hero-note strong {
+    display: block;
+  }
+
+  .giving-hero-note span {
+    margin-bottom: 7px;
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .giving-hero-note strong {
+    font-family: var(--font-display);
+    font-size: 1.65rem;
+    font-weight: 600;
+  }
+
+  .giving-hero-note a {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 24px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid currentColor;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 180ms ease, border-color 180ms ease;
+  }
+
+  .giving-hero-note a:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .scripture {
+    padding: clamp(38px, 5vw, 62px) 0;
+    color: var(--ink);
+    background: var(--paper);
+  }
+
+  .scripture-inner {
+    display: grid;
+    align-items: start;
+    grid-template-columns: 180px minmax(0, 840px);
+    gap: clamp(30px, 6vw, 88px);
+  }
+
+  .scripture p {
+    margin: 8px 0 0;
     color: var(--coral);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 800;
     letter-spacing: 0.13em;
     text-transform: uppercase;
   }
 
-  .quote blockquote {
+  .scripture blockquote {
     margin: 0;
     font-family: var(--font-display);
-    font-size: clamp(2.6rem, 5.2vw, 5.5rem);
+    font-size: clamp(1.55rem, 2.6vw, 2.55rem);
     font-weight: 600;
-    letter-spacing: -0.05em;
-    line-height: 1;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
   }
 
-  .giving-copy {
-    padding-top: 56px;
-  }
-
-  .giving-copy > p:not(.eyebrow) {
-    margin: 24px 0 0;
-    color: rgba(32, 37, 43, 0.68);
-  }
-
-  .ways {
+  .online-giving {
     background: var(--cream);
   }
 
-  .ways-grid {
+  .online-layout {
     display: grid;
-    grid-template-columns: 0.8fr 1fr;
-    gap: clamp(60px, 10vw, 150px);
+    align-items: start;
+    grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+    gap: clamp(64px, 10vw, 150px);
   }
 
-  .ways-list {
+  .online-heading {
+    position: sticky;
+    top: 130px;
+  }
+
+  .online-heading h2,
+  .other-heading h2,
+  .questions h2 {
     margin: 0;
-    padding: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+  }
+
+  .online-heading h2 {
+    font-size: clamp(3rem, 5.2vw, 5.6rem);
+    line-height: 0.94;
+  }
+
+  .online-heading > p:last-child {
+    max-width: 380px;
+    margin: 26px 0 0;
+    color: rgba(32, 37, 43, 0.68);
+  }
+
+  .online-options {
     border-top: 1px solid var(--line);
-    list-style: none;
   }
 
-  .way {
+  .giving-option {
     display: grid;
-    grid-template-columns: 0.15fr 1fr;
-    gap: 24px;
-    padding: 34px 0;
+    padding: clamp(34px, 5vw, 58px) 0;
     border-bottom: 1px solid var(--line);
+    grid-template-columns: 58px 1fr;
+    gap: clamp(18px, 3vw, 36px);
   }
 
-  .way > span {
+  .option-number {
+    padding-top: 8px;
     color: var(--coral);
     font-size: 0.7rem;
     font-weight: 800;
+    letter-spacing: 0.08em;
   }
 
-  .way h3,
-  .way p,
-  .way address {
+  .option-label {
+    margin: 0 0 8px;
+    color: var(--coral);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .option-copy h3 {
     margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 4vw, 4rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1;
   }
 
-  .way h3 {
+  .option-copy > p:not(.option-label, .option-note) {
+    margin: 14px 0 0;
+    color: rgba(32, 37, 43, 0.68);
+  }
+
+  .zelle-address {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 26px;
+    padding: 16px 18px;
+    color: var(--white);
+    background: var(--forest-deep);
+  }
+
+  .zelle-address span {
+    overflow-wrap: anywhere;
+    font-size: clamp(0.85rem, 1.3vw, 1rem);
+    font-weight: 700;
+  }
+
+  .zelle-address button {
+    flex: 0 0 auto;
+    padding: 9px 13px;
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+  }
+
+  .zelle-address button:hover,
+  .zelle-address button.is-copied {
+    border-color: var(--gold);
+    color: var(--forest-deep);
+    background: var(--gold);
+  }
+
+  .option-note {
+    margin: 12px 0 0;
+    color: rgba(32, 37, 43, 0.56);
+    font-size: 0.78rem;
+  }
+
+  .primary-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 206px;
+    margin-top: 28px;
+    padding: 17px 20px;
+    color: var(--white);
+    background: var(--forest-deep);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 180ms ease, background 180ms ease;
+  }
+
+  .primary-action:hover {
+    color: var(--forest-deep);
+    background: var(--gold);
+  }
+
+  .other-ways {
+    background: var(--sunwash);
+  }
+
+  .other-layout {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+    gap: clamp(64px, 10vw, 150px);
+  }
+
+  .other-heading h2 {
+    font-size: clamp(2.5rem, 4vw, 4.2rem);
+    line-height: 1;
+  }
+
+  .other-list {
+    border-top: 1px solid var(--line);
+  }
+
+  .other-way {
+    display: grid;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    grid-template-columns: 110px 1fr;
+    gap: 24px;
+  }
+
+  .other-way > span {
+    padding-top: 6px;
+    color: var(--coral);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .other-way h3 {
+    margin: 0;
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: 1.85rem;
     font-weight: 600;
   }
 
-  .way p,
-  .way address {
-    margin-top: 10px;
-    color: rgba(32, 37, 43, 0.66);
+  .other-way p,
+  .other-way address {
+    margin: 8px 0 0;
+    color: rgba(32, 37, 43, 0.68);
     font-size: 0.9rem;
     font-style: normal;
   }
 
-  .way .text-link {
-    margin-top: 22px;
-  }
-
-  .impact {
+  .thanks {
     position: relative;
-    min-height: 78vh;
+    min-height: clamp(390px, 52vw, 540px);
     display: flex;
     align-items: center;
     overflow: hidden;
     color: var(--white);
   }
 
-  .impact-media {
+  .thanks-media,
+  .thanks-media::after {
     position: absolute;
     inset: 0;
   }
 
-  .impact-media::after {
-    position: absolute;
-    inset: 0;
-    background: rgba(5, 27, 22, 0.7);
+  .thanks-media::after {
+    background: linear-gradient(90deg, rgba(10, 25, 29, 0.88), rgba(10, 25, 29, 0.38));
     content: '';
   }
 
-  .impact-media :global(img) {
+  .thanks-media :global(img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 46%;
   }
 
-  .impact-copy {
+  .thanks-inner {
     position: relative;
     z-index: 1;
   }
 
-  .impact-copy .eyebrow {
+  .thanks .eyebrow {
     color: var(--gold);
   }
 
-  .impact-copy h2 {
+  .thanks h2 {
+    max-width: 700px;
     margin: 0;
     font-family: var(--font-display);
-    font-size: clamp(4rem, 10vw, 10rem);
+    font-size: clamp(3.8rem, 7vw, 7.2rem);
     font-weight: 600;
-    letter-spacing: -0.06em;
-    line-height: 0.78;
+    letter-spacing: -0.055em;
+    line-height: 0.86;
   }
 
-  .impact-copy em {
-    color: var(--gold);
-    font-weight: inherit;
+  .thanks-inner > p:last-child {
+    max-width: 520px;
+    margin: 24px 0 0;
+    font-size: 1rem;
+    opacity: 0.82;
   }
 
   .questions {
@@ -254,25 +569,125 @@ import { church } from '../data/site';
     gap: 50px;
   }
 
-  .questions-inner > div:last-child {
+  .questions h2 {
+    font-size: clamp(2.4rem, 4vw, 4rem);
+  }
+
+  .contact-links {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     font-size: 0.9rem;
   }
 
-  .questions-inner > div:last-child a {
+  .contact-links a {
     border-bottom: 1px solid var(--line);
   }
 
-  @media (max-width: 800px) {
-    .giving-grid,
-    .ways-grid {
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes breathe {
+    0%,
+    100% {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.035);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .giving-hero-inner,
+    .online-layout,
+    .other-layout {
       grid-template-columns: 1fr;
     }
 
-    .giving-copy {
+    .giving-hero-inner {
+      gap: 38px;
+    }
+
+    .giving-hero-note {
+      width: min(100%, 360px);
+    }
+
+    .online-heading {
+      position: static;
+    }
+
+    .scripture-inner {
+      grid-template-columns: 130px minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .giving-hero {
+      min-height: 590px;
+    }
+
+    .giving-hero-inner {
+      padding-top: 130px;
+      padding-bottom: 52px;
+    }
+
+    .giving-hero h1 {
+      font-size: clamp(3.45rem, 16vw, 5rem);
+    }
+
+    .giving-hero-orbit {
+      top: 20%;
+      right: -24%;
+      width: 75vw;
+    }
+
+    .scripture-inner {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .scripture p {
+      margin-top: 0;
+    }
+
+    .giving-option {
+      grid-template-columns: 36px 1fr;
+    }
+
+    .zelle-address {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .zelle-address button {
+      align-self: flex-start;
+    }
+
+    .other-way {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .other-way > span {
       padding-top: 0;
+    }
+
+    .thanks {
+      min-height: 420px;
+    }
+
+    .thanks-media::after {
+      background: rgba(10, 25, 29, 0.62);
     }
 
     .questions-inner {
@@ -280,8 +695,16 @@ import { church } from '../data/site';
       flex-direction: column;
     }
 
-    .questions-inner > div:last-child {
+    .contact-links {
       align-items: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .giving-hero-copy,
+    .giving-hero-note,
+    .giving-hero-orbit {
+      animation: none;
     }
   }
 </style>
