@@ -1,0 +1,287 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import VisitCTA from '../components/VisitCTA.astro';
+import Arrow from '../components/Arrow.astro';
+import prayer from '../assets/images/prayer.jpg';
+import { church } from '../data/site';
+---
+
+<BaseLayout
+  title="Giving | RCCG Victory House Wichita"
+  description="Support the ministry and community outreach of RCCG Victory House Wichita through generous giving."
+>
+  <PageHero
+    eyebrow="Giving"
+    title="Support our church"
+    intro="Your giving supports the ministry of RCCG Victory House Wichita and helps us serve families in our church and in the Wichita community."
+    dark={true}
+  />
+
+  <section class="giving-intro section">
+    <div class="wrap giving-grid">
+      <div class="quote reveal">
+        <p>2 Corinthians 9:7</p>
+        <blockquote>
+          “Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.”
+        </blockquote>
+      </div>
+      <div class="giving-copy reveal">
+        <p class="eyebrow">Why we give</p>
+        <h2 class="heading">Why we give</h2>
+        <p>
+          Giving helps sustain weekly ministry, discipleship, worship, care for our church family,
+          and community outreach including clothing and diaper giveaways.
+        </p>
+        <p>
+          We encourage every giver to use the method that is most convenient and to include a clear memo when designating a gift.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ways section">
+    <div class="wrap ways-grid">
+      <div class="ways-heading reveal">
+        <p class="eyebrow">Ways to give</p>
+        <h2 class="title">Ways you can give</h2>
+      </div>
+      <ol class="ways-list">
+        <li class="way reveal">
+          <span>01</span>
+          <div>
+            <h3>Give in person</h3>
+            <p>Offerings can be given during Sunday worship and other church gatherings.</p>
+          </div>
+        </li>
+        <li class="way reveal">
+          <span>02</span>
+          <div>
+            <h3>Give by mail</h3>
+            <p>Make checks payable to RCCG Victory House and mail them to:</p>
+            <address>1701 S Sedgwick St<br />Wichita, KS 67213</address>
+          </div>
+        </li>
+        <li class="way reveal">
+          <span>03</span>
+          <div>
+            <h3>Give electronically</h3>
+            <p>
+              Victory House accepts electronic gifts. Contact the church office for the current giving details before sending your first gift.
+            </p>
+            <a class="text-link" href={`mailto:${church.email}?subject=Electronic%20giving%20details`}>Request giving details <Arrow /></a>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="impact">
+    <div class="impact-media">
+      <Image src={prayer} alt="Victory House members worshipping together" width={1900} widths={[720, 1200, 1900]} sizes="100vw" />
+    </div>
+    <div class="wrap impact-copy reveal">
+      <p class="eyebrow">Thank you</p>
+      <h2>Your support helps<br />RCCG Victory House<br /><em>serve others.</em></h2>
+    </div>
+  </section>
+
+  <section class="questions section-sm">
+    <div class="wrap questions-inner reveal">
+      <div>
+        <p class="eyebrow">Questions about giving?</p>
+        <h2 class="heading">We’re happy to help.</h2>
+      </div>
+      <div>
+        <a href={`mailto:${church.email}`}>{church.email}</a>
+        <a href="tel:+13162672673">{church.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <VisitCTA />
+</BaseLayout>
+
+<style>
+  .giving-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.65fr;
+    align-items: start;
+    gap: clamp(54px, 10vw, 150px);
+  }
+
+  .quote > p {
+    margin: 0 0 25px;
+    color: var(--coral);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .quote blockquote {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 5.2vw, 5.5rem);
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .giving-copy {
+    padding-top: 56px;
+  }
+
+  .giving-copy > p:not(.eyebrow) {
+    margin: 24px 0 0;
+    color: rgba(32, 37, 43, 0.68);
+  }
+
+  .ways {
+    background: var(--cream);
+  }
+
+  .ways-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    gap: clamp(60px, 10vw, 150px);
+  }
+
+  .ways-list {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+  }
+
+  .way {
+    display: grid;
+    grid-template-columns: 0.15fr 1fr;
+    gap: 24px;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .way > span {
+    color: var(--coral);
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .way h3,
+  .way p,
+  .way address {
+    margin: 0;
+  }
+
+  .way h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .way p,
+  .way address {
+    margin-top: 10px;
+    color: rgba(32, 37, 43, 0.66);
+    font-size: 0.9rem;
+    font-style: normal;
+  }
+
+  .way .text-link {
+    margin-top: 22px;
+  }
+
+  .impact {
+    position: relative;
+    min-height: 78vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: var(--white);
+  }
+
+  .impact-media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .impact-media::after {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 27, 22, 0.7);
+    content: '';
+  }
+
+  .impact-media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .impact-copy {
+    position: relative;
+    z-index: 1;
+  }
+
+  .impact-copy .eyebrow {
+    color: var(--gold);
+  }
+
+  .impact-copy h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 10vw, 10rem);
+    font-weight: 600;
+    letter-spacing: -0.06em;
+    line-height: 0.78;
+  }
+
+  .impact-copy em {
+    color: var(--gold);
+    font-weight: inherit;
+  }
+
+  .questions {
+    background: var(--paper);
+  }
+
+  .questions-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 50px;
+  }
+
+  .questions-inner > div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 0.9rem;
+  }
+
+  .questions-inner > div:last-child a {
+    border-bottom: 1px solid var(--line);
+  }
+
+  @media (max-width: 800px) {
+    .giving-grid,
+    .ways-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .giving-copy {
+      padding-top: 0;
+    }
+
+    .questions-inner {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .questions-inner > div:last-child {
+      align-items: flex-start;
+    }
+  }
+</style>

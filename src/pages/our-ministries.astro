@@ -1,0 +1,279 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import VisitCTA from '../components/VisitCTA.astro';
+import Arrow from '../components/Arrow.astro';
+import congregationPrayer from '../assets/images/congregation-prayer-color.jpg';
+import praiseTeam from '../assets/images/praise-team-wide.jpg';
+import { ministries } from '../data/site';
+---
+
+<BaseLayout
+  title="Ministries | RCCG Victory House Wichita"
+  description="Find community and a place to serve through the ministries of RCCG Victory House Wichita."
+>
+  <PageHero
+    eyebrow="Our ministries"
+    title="There is a place for you to serve."
+    intro="Our ministries help us care for one another, grow in God’s Word, and reach people outside the walls of the church."
+    image={congregationPrayer}
+    imageAlt="Victory House members praying together"
+    layout="split"
+  />
+
+  <section class="intro section">
+    <div class="wrap intro-grid reveal">
+      <p class="eyebrow">Getting involved</p>
+      <h2 class="title">Church is not only something we attend.</h2>
+      <p>
+        We believe every member has something valuable to contribute. You may enjoy teaching children,
+        singing, praying with others, welcoming visitors, or helping with outreach. Wherever you begin,
+        serving is a good way to get to know people and become part of the life of the church.
+      </p>
+    </div>
+  </section>
+
+  <section class="ministries section">
+    <div class="wrap">
+      <ol class="ministry-list">
+        {ministries.map((ministry, index) => (
+          <li class="ministry reveal">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <h2>{ministry.name}</h2>
+              <p>{ministry.line}</p>
+            </div>
+            <p class="lead">Led by {ministry.lead}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="outreach section">
+    <div class="wrap outreach-grid">
+      <div class="outreach-copy reveal">
+        <p class="eyebrow">Community outreach</p>
+        <h2 class="title">Serving our neighbors in practical ways.</h2>
+        <p>
+          RCCG Victory House Wichita has hosted clothes giveaways, diaper drives, and other programs
+          that provide useful items to families in our community.
+        </p>
+        <p>
+          There is always work to do before, during, and after an outreach event. If you would like to help,
+          please let us know. We will be glad to connect you with the team.
+        </p>
+        <a class="btn btn-primary" href="mailto:rccgvictoryhousewichita1@gmail.com?subject=I%20want%20to%20serve">I want to serve <Arrow /></a>
+      </div>
+      <div class="outreach-media reveal">
+        <Image src={praiseTeam} alt="Victory House choir and worship team" width={1200} widths={[640, 900, 1200]} sizes="(max-width: 800px) 100vw, 52vw" />
+        <span>Faith in action</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="start section-sm">
+    <div class="wrap start-inner reveal">
+      <p class="eyebrow">Would you like to serve?</p>
+      <h2 class="heading">Contact us and we will help you find the right ministry.</h2>
+      <a class="text-link" href="mailto:rccgvictoryhousewichita1@gmail.com?subject=Help%20me%20connect">Start a conversation <Arrow /></a>
+    </div>
+  </section>
+
+  <VisitCTA />
+</BaseLayout>
+
+<style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr 0.6fr;
+    align-items: end;
+    gap: 48px;
+  }
+
+  .intro-grid .eyebrow {
+    align-self: start;
+  }
+
+  .intro-grid > p:last-child {
+    margin: 0 0 4px;
+    color: rgba(32, 37, 43, 0.68);
+  }
+
+  .ministries {
+    padding-top: 20px;
+  }
+
+  .ministry-list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    grid-template-columns: repeat(2, 1fr);
+    list-style: none;
+  }
+
+  .ministry {
+    position: relative;
+    display: grid;
+    min-height: 330px;
+    overflow: hidden;
+    grid-template-columns: auto 1fr;
+    align-content: space-between;
+    gap: 24px;
+    padding: clamp(30px, 4vw, 54px);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transition: color 220ms ease, background 220ms ease;
+  }
+
+  .ministry:nth-child(3n + 2),
+  .ministry:nth-child(3n + 3) {
+    background: var(--cream);
+  }
+
+  .ministry:hover {
+    color: var(--white);
+    background: var(--forest);
+  }
+
+  .ministry > span {
+    align-self: start;
+    padding-top: 8px;
+    color: var(--coral);
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .ministry h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 4.3rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+
+  .ministry div p {
+    max-width: 560px;
+    margin: 12px 0 0;
+    color: rgba(32, 37, 43, 0.64);
+  }
+
+  .ministry .lead {
+    grid-column: 2;
+    align-self: end;
+    margin: 0;
+    color: rgba(32, 37, 43, 0.55);
+    font-size: 0.78rem;
+  }
+
+  .ministry:hover > span,
+  .ministry:hover .lead,
+  .ministry:hover div p {
+    color: inherit;
+  }
+
+  .outreach {
+    color: var(--white);
+    background: var(--forest-deep);
+  }
+
+  .outreach-grid {
+    display: grid;
+    grid-template-columns: 0.75fr 1fr;
+    align-items: center;
+    gap: clamp(54px, 9vw, 130px);
+  }
+
+  .outreach-copy .eyebrow {
+    color: var(--gold);
+  }
+
+  .outreach-copy > p:not(.eyebrow) {
+    margin: 28px 0 0;
+    opacity: 0.68;
+  }
+
+  .outreach-copy .btn {
+    margin-top: 32px;
+    color: var(--forest-deep);
+    background: var(--gold);
+  }
+
+  .outreach-media {
+    position: relative;
+  }
+
+  .outreach-media :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 55% center;
+  }
+
+  .outreach-media span {
+    position: absolute;
+    right: -18px;
+    bottom: 26px;
+    padding: 12px 20px;
+    color: var(--forest-deep);
+    background: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .start {
+    background: var(--cream);
+  }
+
+  .start-inner {
+    display: grid;
+    grid-template-columns: 0.45fr 1fr auto;
+    align-items: center;
+    gap: 44px;
+  }
+
+  .start-inner .eyebrow {
+    margin: 0;
+  }
+
+  @media (max-width: 850px) {
+    .intro-grid,
+    .outreach-grid,
+    .start-inner {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .intro-grid {
+      gap: 24px;
+    }
+
+    .ministry {
+      min-height: 280px;
+    }
+
+    .ministry .lead {
+      grid-column: 2;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .ministry-list {
+      grid-template-columns: 1fr;
+    }
+
+    .ministry:nth-child(n) {
+      background: transparent;
+    }
+
+    .ministry:nth-child(even) {
+      background: var(--cream);
+    }
+  }
+</style>

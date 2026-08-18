@@ -1,0 +1,339 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Arrow from '../components/Arrow.astro';
+import prayer from '../assets/images/prayer.jpg';
+import { church, services, monthlyServices } from '../data/site';
+---
+
+<BaseLayout
+  title="Plan Your Visit | RCCG Victory House Wichita"
+  description="Plan your first visit to RCCG Victory House Wichita. Find service times, directions, and what to expect."
+>
+  <PageHero
+    eyebrow="Plan your visit"
+    title="Visit RCCG Victory House Wichita"
+    intro="Join us at 1701 S Sedgwick St in Wichita. Our Sunday service begins at 10:00 AM, and we will be glad to meet you."
+    image={prayer}
+    imageAlt="Victory House members singing during worship"
+    layout="split"
+  />
+
+  <section class="sunday section">
+    <div class="wrap sunday-grid">
+      <div class="sunday-title reveal">
+        <p class="eyebrow">This Sunday</p>
+        <h2 class="title">Our Sunday service begins at 10:00 AM.</h2>
+      </div>
+      <div class="sunday-info reveal">
+        <div class="primary-time">
+          <span>Sunday worship</span>
+          <strong>10:00 AM</strong>
+          <p>Service typically ends at 11:30 AM.</p>
+        </div>
+        <p>
+          You do not need to dress a certain way or know what to do before you arrive. Our welcome
+          team can help you find a seat, answer questions, and point your family in the right direction.
+        </p>
+        <a class="btn btn-primary" href={church.mapUrl} target="_blank" rel="noreferrer">Get directions <Arrow /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="expect section">
+    <div class="wrap">
+      <div class="expect-heading reveal">
+        <p class="eyebrow">What to expect</p>
+        <h2 class="title">What Sunday morning is like</h2>
+      </div>
+      <ol class="expect-list">
+        <li class="reveal">
+          <span>01</span>
+          <h3>People of all ages</h3>
+          <p>Our church includes people from different generations and backgrounds.</p>
+        </li>
+        <li class="reveal">
+          <span>02</span>
+          <h3>Praise and worship</h3>
+          <p>We sing, pray, and worship together. People are free to express their worship in different ways.</p>
+        </li>
+        <li class="reveal">
+          <span>03</span>
+          <h3>Teaching from the Bible</h3>
+          <p>The message comes from Scripture and helps us understand how to live out our faith.</p>
+        </li>
+        <li class="reveal">
+          <span>04</span>
+          <h3>Children are welcome</h3>
+          <p>Families and children are an important part of our church community.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="schedule section">
+    <div class="wrap schedule-grid">
+      <div class="schedule-heading reveal">
+        <p class="eyebrow">Weekly & monthly</p>
+        <h2 class="title">Our regular services</h2>
+      </div>
+      <div class="schedule-list reveal">
+        {services.map((service) => (
+          <article>
+            <p>{service.cadence}</p>
+            <h3>{service.name}</h3>
+            <strong>{service.time}</strong>
+          </article>
+        ))}
+        {monthlyServices.map((service) => (
+          <article>
+            <p>{service.cadence}</p>
+            <h3>{service.name}</h3>
+            <strong>{service.time}</strong>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact section">
+    <div class="wrap contact-grid reveal">
+      <div>
+        <p class="eyebrow">Find us</p>
+        <h2 class="title">How to find us</h2>
+      </div>
+      <address>
+        <span>Address</span>
+        <a href={church.mapUrl} target="_blank" rel="noreferrer">1701 S Sedgwick St<br />Wichita, KS 67213</a>
+      </address>
+      <div class="contact-details">
+        <span>Get in touch</span>
+        <a href="tel:+13162672673">{church.phone}</a>
+        <a href={`mailto:${church.email}`}>{church.email}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .sunday-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.65fr;
+    gap: clamp(54px, 10vw, 150px);
+  }
+
+  .sunday-info {
+    padding-top: 36px;
+  }
+
+  .primary-time {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .primary-time span {
+    display: block;
+    color: var(--coral);
+    font-size: 0.69rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .primary-time strong {
+    display: block;
+    margin-top: 4px;
+    font-family: var(--font-display);
+    font-size: 3.8rem;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .primary-time p,
+  .sunday-info > p {
+    color: rgba(32, 37, 43, 0.66);
+  }
+
+  .primary-time p {
+    margin: 8px 0 0;
+    font-size: 0.78rem;
+  }
+
+  .sunday-info .btn {
+    margin-top: 18px;
+  }
+
+  .expect {
+    background: var(--cream);
+  }
+
+  .expect-heading {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr;
+    align-items: start;
+    gap: 40px;
+    margin-bottom: 70px;
+  }
+
+  .expect-list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    grid-template-columns: repeat(2, 1fr);
+    list-style: none;
+  }
+
+  .expect-list li {
+    min-height: 280px;
+    padding: 30px 40px 36px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .expect-list li:nth-child(odd) {
+    border-right: 1px solid var(--line);
+  }
+
+  .expect-list li:nth-child(even) {
+    padding-left: 40px;
+  }
+
+  .expect-list span {
+    color: var(--coral);
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .expect-list h3 {
+    margin: 52px 0 12px;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .expect-list p {
+    max-width: 440px;
+    margin: 0;
+    color: rgba(32, 37, 43, 0.65);
+  }
+
+  .schedule {
+    color: var(--white);
+    background: var(--forest-deep);
+  }
+
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    gap: clamp(54px, 10vw, 150px);
+  }
+
+  .schedule .eyebrow {
+    color: var(--gold);
+  }
+
+  .schedule-list {
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .schedule-list article {
+    position: relative;
+    padding: 25px 120px 25px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .schedule-list p,
+  .schedule-list h3 {
+    margin: 0;
+  }
+
+  .schedule-list p {
+    color: var(--gold);
+    font-size: 0.63rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .schedule-list h3 {
+    margin-top: 5px;
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 600;
+  }
+
+  .schedule-list strong {
+    position: absolute;
+    top: 36px;
+    right: 0;
+    font-size: 0.78rem;
+  }
+
+  .contact {
+    background: var(--paper);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.55fr 0.55fr;
+    align-items: end;
+    gap: 50px;
+  }
+
+  .contact address,
+  .contact-details {
+    display: flex;
+    margin: 0 0 7px;
+    flex-direction: column;
+    font-style: normal;
+  }
+
+  .contact address span,
+  .contact-details span {
+    margin-bottom: 10px;
+    color: var(--coral);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 800px) {
+    .sunday-grid,
+    .expect-heading,
+    .schedule-grid,
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .expect-list {
+      grid-template-columns: 1fr;
+    }
+
+    .expect-list li,
+    .expect-list li:nth-child(even) {
+      min-height: 0;
+      padding: 28px 0;
+      border-right: 0;
+    }
+
+    .expect-list h3 {
+      margin-top: 30px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .schedule-list article {
+      padding-right: 0;
+    }
+
+    .schedule-list strong {
+      position: static;
+      display: block;
+      margin-top: 8px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+</style>

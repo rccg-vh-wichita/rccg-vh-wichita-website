@@ -1,0 +1,128 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import VisitCTA from '../components/VisitCTA.astro';
+import Arrow from '../components/Arrow.astro';
+import { withBase } from '../utils/paths';
+import choir from '../assets/images/choir.jpg';
+import worship from '../assets/images/worship.jpg';
+import { church } from '../data/site';
+
+// Keep the finished teaser available for a future launch without exposing it today.
+const sermonNotesAvailable = false;
+---
+
+<BaseLayout
+  title="Watch & Worship | RCCG Victory House Wichita"
+  description="Watch sermons, worship, and messages of hope from RCCG Victory House Wichita."
+>
+  <PageHero
+    eyebrow="Watch & worship"
+    title="Watch our services and sermons"
+    intro="Our YouTube channel includes sermons, worship, and other services from RCCG Victory House Wichita."
+    image={choir}
+    imageAlt="The Victory House choir leading worship"
+  />
+
+  <section class="watch section">
+    <div class="wrap watch-grid">
+      <div class="watch-copy reveal">
+        <p class="eyebrow">Our YouTube channel</p>
+        <h2 class="title">Visit our YouTube channel.</h2>
+        <p>
+          Our YouTube channel is home to recent sermons, worship moments, and church gatherings.
+          Subscribe to be notified when new messages are available.
+        </p>
+        <a class="btn btn-primary" href={church.youtube} target="_blank" rel="noreferrer">Visit YouTube <Arrow /></a>
+      </div>
+      <div class="video reveal">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/videoseries?list=UUHiCrsYQCLk2v31iXkhomNg"
+          title="Latest videos from RCCG Victory House Wichita"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  {sermonNotesAvailable && (
+    <section class="notes section">
+      <div class="wrap notes-grid">
+        <div class="notes-media reveal">
+          <Image src={worship} alt="Victory House members celebrating during worship" width={1200} widths={[640, 900, 1200]} sizes="(max-width: 800px) 100vw, 52vw" />
+        </div>
+        <div class="notes-copy reveal">
+          <p class="eyebrow">Sermon notes</p>
+          <h2 class="title">Get a sermon recap</h2>
+          <p>Find notes from the sermon to read, revisit, and meditate on during the week.</p>
+          <a class="text-link" href={withBase('/sermon-notes/')}>Read sermon notes <Arrow /></a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <VisitCTA />
+</BaseLayout>
+
+<style>
+  .watch-grid,
+  .notes-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: center;
+    gap: clamp(54px, 9vw, 130px);
+  }
+
+  .watch-copy > p:not(.eyebrow),
+  .notes-copy > p:not(.eyebrow) {
+    margin: 28px 0;
+    color: rgba(32, 37, 43, 0.68);
+  }
+
+  .video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--forest-deep);
+  }
+
+  .video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .notes {
+    color: var(--white);
+    background: var(--forest-deep);
+  }
+
+  .notes-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+
+  .notes-media :global(img) {
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+  }
+
+  .notes-copy .eyebrow {
+    color: var(--gold);
+  }
+
+  .notes-copy > p:not(.eyebrow) {
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  @media (max-width: 850px) {
+    .watch-grid,
+    .notes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

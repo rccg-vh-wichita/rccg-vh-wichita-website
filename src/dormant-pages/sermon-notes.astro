@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import VisitCTA from '../components/VisitCTA.astro';
+import Arrow from '../components/Arrow.astro';
+import worship from '../assets/images/worship.jpg';
+import { church } from '../data/site';
+---
+
+<!-- Dormant page source: move this file back into src/pages when sermon notes are ready to publish. -->
+<BaseLayout
+  title="Sermon Notes | RCCG Victory House Wichita"
+  description="Read, reflect on, and revisit teaching from RCCG Victory House Wichita."
+>
+  <PageHero
+    eyebrow="Sermon notes"
+    title="Read and meditate on the message"
+    intro="Find notes from recent sermons and return to the Scriptures during the week."
+    image={worship}
+    imageAlt="Victory House members worshipping together"
+    layout="split"
+  />
+
+  <section class="notes section">
+    <div class="wrap notes-inner reveal">
+      <div>
+        <p class="eyebrow">Sermon recaps</p>
+        <h2 class="title">We are organizing the sermon notes for this new website.</h2>
+      </div>
+      <div>
+        <p>
+          We are organizing our sermon archive for this new website. In the meantime, watch the
+          latest messages on YouTube or contact us to ask for notes from a recent teaching.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href={church.youtube} target="_blank" rel="noreferrer">Watch messages <Arrow /></a>
+          <a class="text-link" href={`mailto:${church.email}?subject=Sermon%20notes%20request`}>Request notes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="practice section">
+    <div class="wrap practice-grid">
+      <article class="reveal">
+        <span>01</span>
+        <h2>Read the passage again</h2>
+        <p>Take your time and note the verse or idea that stood out to you.</p>
+      </article>
+      <article class="reveal">
+        <span>02</span>
+        <h2>Write down what you learned</h2>
+        <p>Think about what the passage shows you about God and about your own life.</p>
+      </article>
+      <article class="reveal">
+        <span>03</span>
+        <h2>Pray about your response</h2>
+        <p>Ask the Holy Spirit to help you put what you have learned into practice.</p>
+      </article>
+    </div>
+  </section>
+
+  <VisitCTA />
+</BaseLayout>
+
+<style>
+  .notes-inner {
+    display: grid;
+    grid-template-columns: 1fr 0.65fr;
+    gap: clamp(54px, 10vw, 150px);
+  }
+
+  .notes-inner > div:last-child {
+    padding-top: 46px;
+  }
+
+  .notes-inner > div:last-child > p {
+    margin: 0;
+    color: rgba(32, 37, 43, 0.68);
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 30px;
+  }
+
+  .practice {
+    color: var(--white);
+    background: var(--forest-deep);
+  }
+
+  .practice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .practice article {
+    min-height: 330px;
+    padding: 32px;
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .practice article:first-child {
+    padding-left: 0;
+  }
+
+  .practice article:last-child {
+    border-right: 0;
+  }
+
+  .practice span {
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .practice h2 {
+    margin: 110px 0 10px;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 600;
+  }
+
+  .practice p {
+    margin: 0;
+    opacity: 0.62;
+  }
+
+  @media (max-width: 800px) {
+    .notes-inner,
+    .practice-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .notes-inner > div:last-child {
+      padding-top: 0;
+    }
+
+    .practice article,
+    .practice article:first-child {
+      min-height: 250px;
+      padding: 28px 0;
+      border-right: 0;
+    }
+
+    .practice h2 {
+      margin-top: 60px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .actions {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

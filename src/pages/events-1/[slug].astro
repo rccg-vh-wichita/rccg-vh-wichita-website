@@ -1,0 +1,30 @@
+---
+import { withBase } from '../../utils/paths';
+
+export function getStaticPaths() {
+  const legacySlugs = [
+    '20th-anniversary-of-rccg-victory-house-wichita',
+    'african-praise',
+    'african-praise-sunday',
+    'clothes-giveaway',
+    'couples-dinner',
+    'couples-dinner-1',
+    'diaper-giveaway-2025',
+    'marriage-seminar-2025',
+    'mens-sunday',
+    'mental-health-sunday-with-dr-femi',
+    'mental-health-talk',
+    'mental-health-with-dr-femi',
+    'night-vigil',
+    'monthly-night-vigil-10-pm',
+    'one-hour-of-worship',
+    'pastors-appreciation-service',
+    'pastors-appreciation-sunday',
+    'praise-extravaganza-barbeque-night',
+    'praise-thanksgiving-sunday'
+  ];
+  return legacySlugs.map((slug) => ({ params: { slug } }));
+}
+
+return Astro.redirect(withBase('/events/'), 301);
+---

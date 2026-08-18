@@ -1,0 +1,22 @@
+{
+  "name": "rccg-victory-house-wichita",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.3",
+    "@fontsource-variable/manrope": "^5.2.6",
+    "@fontsource/fraunces": "^5.2.6",
+    "astro": "^7.2.2",
+    "sharp": "^0.35.3",
+    "typescript": "^5.9.2"
+  }
+}

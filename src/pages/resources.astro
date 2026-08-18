@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import VisitCTA from '../components/VisitCTA.astro';
+import Arrow from '../components/Arrow.astro';
+import { resources } from '../data/site';
+---
+
+<BaseLayout
+  title="Resources | RCCG Victory House Wichita"
+  description="Devotionals, Bible study resources, and spiritual growth tools from Victory House Wichita."
+>
+  <PageHero
+    eyebrow="Christian resources"
+    title="Resources for Bible study and daily devotion"
+    intro="These links can help you read Scripture, pray, and continue learning throughout the week."
+    dark={true}
+  />
+
+  <section class="resources section">
+    <div class="wrap">
+      <div class="resources-heading reveal">
+        <p class="eyebrow">Helpful links</p>
+        <h2 class="title">Devotionals and study materials</h2>
+      </div>
+      <ol class="resource-list">
+        {resources.map((resource, index) => (
+          <li class="resource reveal">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <h2>{resource.name}</h2>
+              <p>{resource.description}</p>
+            </div>
+            <a href={resource.href} target="_blank" rel="noreferrer" aria-label={`Open ${resource.name}`}><Arrow /></a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="rhythm section">
+    <div class="wrap rhythm-grid reveal">
+      <p class="eyebrow">Daily time with God</p>
+      <h2 class="title">Start with Scripture and prayer.</h2>
+      <p>
+        You do not have to begin with a long study. Read a passage, take time to pray, and think about how it applies to your day.
+      </p>
+    </div>
+  </section>
+
+  <VisitCTA />
+</BaseLayout>
+
+<style>
+  .resources-heading {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr;
+    align-items: start;
+    gap: 40px;
+    margin-bottom: 70px;
+  }
+
+  .resource-list {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+  }
+
+  .resource {
+    display: grid;
+    grid-template-columns: 0.16fr 1fr auto;
+    align-items: center;
+    gap: 28px;
+    padding: clamp(30px, 5vw, 58px) 5px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .resource > span {
+    align-self: start;
+    padding-top: 7px;
+    color: var(--coral);
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .resource h2,
+  .resource p {
+    margin: 0;
+  }
+
+  .resource h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+  }
+
+  .resource p {
+    margin-top: 8px;
+    color: rgba(32, 37, 43, 0.64);
+  }
+
+  .resource > a {
+    display: grid;
+    width: 54px;
+    height: 54px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    place-content: center;
+    transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+  }
+
+  .resource > a:hover {
+    color: var(--white);
+    background: var(--forest);
+    transform: translateX(3px);
+  }
+
+  .resource :global(svg) {
+    width: 20px;
+  }
+
+  .rhythm {
+    color: var(--white);
+    background: var(--forest-deep);
+  }
+
+  .rhythm-grid {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr 0.5fr;
+    align-items: end;
+    gap: 50px;
+  }
+
+  .rhythm .eyebrow {
+    align-self: start;
+    color: var(--gold);
+  }
+
+  .rhythm-grid > p:last-child {
+    margin: 0 0 4px;
+    opacity: 0.65;
+  }
+
+  @media (max-width: 800px) {
+    .resources-heading,
+    .rhythm-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .resource {
+      grid-template-columns: auto 1fr auto;
+    }
+
+    .resource p {
+      font-size: 0.84rem;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .resource > a {
+      width: 42px;
+      height: 42px;
+    }
+  }
+</style>

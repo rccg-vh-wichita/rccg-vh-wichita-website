@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import VisitCTA from '../components/VisitCTA.astro';
+import gathering from '../assets/images/gathering.jpg';
+---
+
+<BaseLayout
+  title="Life at Victory House | RCCG Victory House Wichita"
+  description="Experience a welcoming church family where people grow in faith and walk through life together."
+>
+  <PageHero
+    eyebrow="Our church family"
+    title="A place to be encouraged, equipped, and empowered"
+    intro="Victory House is a place to be encouraged, equipped, and empowered to discover and fulfill God’s purpose for your life."
+    image={gathering}
+    imageAlt="Victory House friends celebrating together"
+  />
+
+  <section class="story section">
+    <div class="wrap story-grid reveal">
+      <p class="eyebrow">Come and see</p>
+      <h2 class="title">Experience Victory House for yourself.</h2>
+      <p>
+        Join us for worship and meet the people who call this church home. We hope you will find a place to grow in faith and fulfill God’s purpose for your life.
+      </p>
+    </div>
+  </section>
+
+  <VisitCTA />
+</BaseLayout>
+
+<style>
+  .story-grid {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr 0.55fr;
+    align-items: end;
+    gap: 48px;
+  }
+
+  .story-grid .eyebrow {
+    align-self: start;
+  }
+
+  .story-grid > p:last-child {
+    margin: 0 0 4px;
+    color: rgba(32, 37, 43, 0.68);
+  }
+
+  @media (max-width: 800px) {
+    .story-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+</style>

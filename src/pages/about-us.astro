@@ -1,0 +1,565 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VisitCTA from '../components/VisitCTA.astro';
+import gathering from '../assets/images/gathering.jpg';
+import leadPastors from '../assets/images/lead-pastors-sam-jane.jpeg';
+import prayer from '../assets/images/prayer.jpg';
+import { leaders } from '../data/site';
+---
+
+<BaseLayout
+  title="About Us | RCCG Victory House Wichita"
+  description="Discover the story, vision, pastors, and leadership of RCCG Victory House Wichita."
+>
+  <section class="about-hero">
+    <span class="about-year" aria-hidden="true">2003</span>
+    <div class="wrap about-hero-grid">
+      <div class="about-hero-copy">
+        <p class="eyebrow">About RCCG Victory House Wichita</p>
+        <h1>Our story is one of God’s faithfulness.</h1>
+        <p>
+          Since its inception, RCCG Victory House Wichita has been a place where men and women are encouraged,
+          equipped, and empowered to discover and fulfill God’s purpose for their lives.
+        </p>
+        <div class="about-meta">
+          <span>Founded May 2003</span>
+          <span>Wichita, Kansas</span>
+        </div>
+      </div>
+      <div class="about-collage">
+        <div class="about-image-main">
+          <Image src={gathering} alt="Victory House members gathered in worship" width={1400} widths={[720, 1000, 1400]} sizes="(max-width: 850px) 100vw, 52vw" loading="eager" />
+        </div>
+        <div class="about-image-small">
+          <Image src={prayer} alt="Members of Victory House singing and praying" width={700} widths={[400, 600, 700]} sizes="(max-width: 850px) 45vw, 20vw" loading="eager" />
+        </div>
+        <p>Equipping brethren<br />to be the best.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="story section">
+    <div class="wrap">
+      <div class="story-title reveal">
+        <p class="eyebrow">Our history</p>
+        <h2 class="title">God has been faithful through every chapter.</h2>
+      </div>
+      <div class="story-timeline">
+        <article class="reveal">
+          <span>May 2003</span>
+          <h3>A new parish begins</h3>
+          <p>
+            RCCG Victory House Wichita was inaugurated under the leadership of its first pastors,
+            Pastor Timothy Okeowo and Pastor Praise Okeowo. They faithfully served until they were
+            called to a greater assignment in Kansas City.
+          </p>
+        </article>
+        <article class="reveal">
+          <span>August 2019</span>
+          <h3>A new season of leadership</h3>
+          <p>
+            Pastor Sam and Pastor Jane Kayode assumed leadership and continued the work of helping
+            people grow in God’s Word and discover His purpose for their lives.
+          </p>
+        </article>
+        <blockquote class="reveal">Through every season, God has remained faithful and good to His church.</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="vision-band">
+    <div class="wrap vision-inner reveal">
+      <p class="eyebrow">The vision of our church</p>
+      <blockquote>
+        To build, empower and disciple the saved through the powerful Word of God—and to reach the unsaved through evangelism and missions.
+      </blockquote>
+      <span>Equipping brethren to be the best.</span>
+    </div>
+  </section>
+
+  <section class="pastors section">
+    <div class="wrap pastors-grid">
+      <div class="pastors-media reveal">
+        <div class="pastors-photo">
+          <Image
+            src={leadPastors}
+            alt="Pastor Sam and Pastor Jane Kayode"
+            width={1800}
+            widths={[640, 960, 1400, 1800, 2200]}
+            sizes="(max-width: 800px) 100vw, 50vw"
+          />
+        </div>
+        <span>Serving Victory House since August 2019</span>
+      </div>
+      <div class="pastors-copy reveal">
+        <p class="eyebrow">Meet our lead pastors</p>
+        <h2 class="title">Pastor Sam and<br />Pastor Jane Kayode</h2>
+        <p>
+          Pastor Samuel Kayode and his wife, Pastor Jane Kayode, answered God’s call to come to the
+          United States after faithfully pastoring several parishes of the Redeemed Christian Church
+          of God in Lagos, Nigeria.
+        </p>
+        <p>
+          Today, they serve as pastors of RCCG Victory House Wichita with enthusiasm, passion, and clarity.
+          They teach God’s Word in a way that can be applied to everyday life. Both are marriage counselors, graced to share
+          and interpret God’s Word with wisdom and understanding.
+        </p>
+        <p>
+          Pastor Jane is also a preacher with a heart for teenagers, unmarried youth, married women,
+          and people from every walk of life. Together, Pastor Sam and Pastor Jane are proud parents
+          of five wonderful children.
+        </p>
+        <a class="text-link" href="mailto:askay4jane@yahoo.com">Contact our pastors</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="team section">
+    <div class="wrap">
+      <div class="team-heading reveal">
+        <p class="eyebrow">Meet the team</p>
+        <h2 class="title">Meet our church leaders.</h2>
+        <p>These are some of the people who lead and serve in the different areas of our church.</p>
+      </div>
+      <ol class="team-list">
+        {leaders.map((leader, index) => (
+          <li class="team-member reveal">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{leader.name}</h3>
+            <p>{leader.role}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <VisitCTA />
+</BaseLayout>
+
+<style>
+  .about-hero {
+    position: relative;
+    min-height: 760px;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    background: var(--aqua-wash);
+  }
+
+  .about-year {
+    position: absolute;
+    right: -0.03em;
+    bottom: -0.25em;
+    color: rgba(18, 61, 50, 0.06);
+    font-family: var(--font-display);
+    font-size: clamp(15rem, 31vw, 34rem);
+    font-weight: 600;
+    letter-spacing: -0.08em;
+    line-height: 0.8;
+  }
+
+  .about-hero-grid {
+    position: relative;
+    display: grid;
+    padding: 90px 0;
+    grid-template-columns: 0.95fr 1.05fr;
+    align-items: center;
+    gap: clamp(50px, 8vw, 110px);
+  }
+
+  .about-hero-copy h1 {
+    max-width: 590px;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(3.6rem, 5.4vw, 5.8rem);
+    font-weight: 600;
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+  }
+
+  .about-hero-copy > p:not(.eyebrow) {
+    max-width: 540px;
+    margin: 30px 0 0;
+    color: rgba(32, 37, 43, 0.7);
+    font-size: 1.05rem;
+  }
+
+  .about-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 34px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(32, 37, 43, 0.2);
+    color: var(--forest);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .about-collage {
+    position: relative;
+    min-height: 570px;
+  }
+
+  .about-image-main {
+    position: absolute;
+    inset: 0 0 0 13%;
+    overflow: hidden;
+    border-radius: 48% 48% 12px 12px;
+  }
+
+  .about-image-main :global(img),
+  .about-image-small :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-image-main :global(img) {
+    object-position: center 44%;
+  }
+
+  .about-image-small {
+    position: absolute;
+    bottom: -34px;
+    left: 0;
+    width: 38%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 10px solid var(--aqua-wash);
+  }
+
+  .about-image-small :global(img) {
+    object-position: 62% center;
+  }
+
+  .about-collage > p {
+    position: absolute;
+    right: -24px;
+    bottom: 34px;
+    margin: 0;
+    padding: 17px 20px;
+    color: var(--forest-deep);
+    background: var(--gold);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.05;
+    transform: rotate(-2deg);
+  }
+
+  .story-title {
+    display: grid;
+    margin-bottom: 70px;
+    grid-template-columns: 0.35fr 1fr;
+    align-items: start;
+    gap: 40px;
+  }
+
+  .story-timeline {
+    display: grid;
+    border-top: 1px solid var(--line);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .story-timeline article {
+    min-height: 350px;
+    padding: 36px clamp(30px, 5vw, 70px) 42px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .story-timeline article + article {
+    padding-left: clamp(30px, 5vw, 70px);
+    border-left: 1px solid var(--line);
+  }
+
+  .story-timeline article > span {
+    color: var(--coral);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .story-timeline h3 {
+    margin: 90px 0 16px;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .story-timeline article p {
+    max-width: 510px;
+    margin: 0;
+    color: rgba(32, 37, 43, 0.72);
+  }
+
+  .story-timeline blockquote {
+    grid-column: 1 / -1;
+    max-width: 980px;
+    margin: 0;
+    padding: 70px 0 0 16%;
+    color: var(--forest);
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 5.2rem);
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+  }
+
+  .vision-band {
+    padding: clamp(90px, 12vw, 170px) 0;
+    position: relative;
+    overflow: hidden;
+    color: var(--forest-deep);
+    background: var(--gold);
+  }
+
+  .vision-band .eyebrow {
+    color: var(--forest);
+  }
+
+  .vision-inner blockquote {
+    max-width: 1050px;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 5.5vw, 6rem);
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+  }
+
+  .vision-inner > span {
+    display: inline-block;
+    margin-top: 38px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(32, 37, 43, 0.35);
+    color: var(--forest-deep);
+    font-size: 0.75rem;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .pastors-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.95fr;
+    align-items: center;
+    gap: clamp(50px, 9vw, 130px);
+  }
+
+  .pastors {
+    background: linear-gradient(90deg, var(--paper) 0 64%, var(--aqua-wash) 64%);
+  }
+
+  .pastors-media {
+    position: relative;
+    padding: clamp(9px, 1vw, 14px);
+    background: var(--forest-deep);
+    box-shadow: 0 28px 70px rgba(13, 27, 34, 0.16);
+  }
+
+  .pastors-photo {
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: #101922;
+  }
+
+  .pastors-photo :global(picture) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .pastors-photo :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .pastors-media > span {
+    position: absolute;
+    right: clamp(-22px, -1.4vw, -12px);
+    bottom: clamp(26px, 3.2vw, 42px);
+    max-width: 205px;
+    padding: 14px 18px;
+    color: var(--forest-deep);
+    background: var(--peach);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .pastors-copy .title {
+    margin-bottom: 32px;
+  }
+
+  .pastors-copy > p:not(.eyebrow) {
+    margin: 0 0 18px;
+    color: rgba(32, 37, 43, 0.7);
+  }
+
+  .pastors-copy .text-link {
+    margin-top: 20px;
+  }
+
+  .team {
+    background: var(--cream);
+  }
+
+  .team-heading {
+    display: grid;
+    grid-template-columns: 0.45fr 1fr 0.6fr;
+    align-items: end;
+    gap: 42px;
+    margin-bottom: 70px;
+  }
+
+  .team-heading .eyebrow {
+    align-self: start;
+  }
+
+  .team-heading > p:last-child {
+    margin: 0 0 5px;
+    color: rgba(32, 37, 43, 0.66);
+  }
+
+  .team-list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    grid-template-columns: repeat(2, 1fr);
+    list-style: none;
+  }
+
+  .team-member {
+    display: grid;
+    min-height: 130px;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    gap: 24px;
+    padding: 28px 30px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .team-member > span {
+    color: var(--coral);
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .team-member h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.4vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  .team-member p {
+    grid-column: 2;
+    margin: 0;
+    color: rgba(32, 37, 43, 0.64);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 800px) {
+    .about-hero-grid,
+    .pastors-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-hero {
+      min-height: 0;
+    }
+
+    .about-hero-grid {
+      padding: 76px 0 110px;
+    }
+
+    .about-collage {
+      min-height: 540px;
+    }
+
+    .story-title,
+    .story-timeline {
+      grid-template-columns: 1fr;
+    }
+
+    .story-timeline article + article {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .story-timeline blockquote {
+      padding-left: 0;
+    }
+
+    .team-heading {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .team-heading .eyebrow {
+      margin-bottom: 0;
+    }
+
+    .team-member {
+      grid-template-columns: auto 1fr;
+    }
+
+    .team-member p {
+      grid-column: 2;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .about-hero-copy h1 {
+      font-size: clamp(3.4rem, 15vw, 4.8rem);
+    }
+
+    .about-meta {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .about-collage {
+      min-height: 430px;
+    }
+
+    .about-collage > p {
+      right: 0;
+      max-width: 66%;
+    }
+
+    .pastors-media > span {
+      right: 0;
+      max-width: 170px;
+    }
+
+    .story-timeline article {
+      min-height: 300px;
+      padding-right: 0;
+    }
+
+    .team-list {
+      grid-template-columns: 1fr;
+    }
+
+    .pastors {
+      background: var(--paper);
+    }
+  }
+</style>
