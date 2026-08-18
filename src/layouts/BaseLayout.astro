@@ -2,37 +2,163 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { withBase } from '../utils/paths';
+import { church } from '../data/site';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description: string;
   image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
 }
 
-const { title, description, image = '/social-card.jpg' } = Astro.props;
+const {
+  title,
+  description,
+  image = '/social-card.jpg',
+  imageAlt = 'RCCG Victory House Wichita',
+  noindex = false
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(withBase(image), Astro.site);
+const siteUrl = new URL('/', Astro.site);
+const logoUrl = new URL(withBase('/church-logo.png'), Astro.site);
+const pageName = title.split('|')[0]?.trim() || title;
+const isHome = canonical.pathname === '/';
+const organizationId = `${siteUrl.href}#organization`;
+const websiteId = `${siteUrl.href}#website`;
+const webpageId = `${canonical.href}#webpage`;
+
+const organization = {
+  '@type': ['Organization', 'Church'],
+  '@id': organizationId,
+  name: church.name,
+  legalName: church.fullName,
+  alternateName: ['Victory House Wichita', 'RCCG VH Wichita'],
+  url: siteUrl.href,
+  description: church.vision,
+  slogan: church.mission,
+  foundingDate: '2003-05',
+  logo: {
+    '@type': 'ImageObject',
+    contentUrl: logoUrl.href,
+    width: 1024,
+    height: 1024
+  },
+  image: socialImage.href,
+  email: church.email,
+  telephone: '+1-316-267-2673',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '1701 S Sedgwick St',
+    addressLocality: 'Wichita',
+    addressRegion: 'KS',
+    postalCode: '67213',
+    addressCountry: 'US'
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Wichita, Kansas'
+  },
+  sameAs: [church.youtube, church.instagram, church.facebook],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+1-316-267-2673',
+    email: church.email,
+    contactType: 'general inquiries',
+    areaServed: 'US',
+    availableLanguage: 'English'
+  }
+};
+
+const website = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  url: siteUrl.href,
+  name: church.name,
+  alternateName: 'Victory House Wichita',
+  publisher: { '@id': organizationId },
+  inLanguage: 'en-US'
+};
+
+const webpage = {
+  '@type': 'WebPage',
+  '@id': webpageId,
+  url: canonical.href,
+  name: title,
+  description,
+  isPartOf: { '@id': websiteId },
+  about: { '@id': organizationId },
+  inLanguage: 'en-US'
+};
+
+const breadcrumb = !isHome
+  ? {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonical.href}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: siteUrl.href
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: pageName,
+          item: canonical.href
+        }
+      ]
+    }
+  : null;
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    ...(isHome ? [organization, website] : []),
+    webpage,
+    ...(breadcrumb ? [breadcrumb] : [])
+  ]
+};
+const structuredDataJson = JSON.stringify(structuredData).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#17232e" />
     <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+    <meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
     <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={church.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
     <link rel="icon" href={withBase('/favicon-32.png')} type="image/png" sizes="32x32" />
     <link rel="icon" href={withBase('/favicon-192.png')} type="image/png" sizes="192x192" />
     <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} sizes="180x180" />
+    <link rel="manifest" href={withBase('/site.webmanifest')} />
     <title>{title}</title>
+    <script type="application/ld+json" set:html={structuredDataJson} is:inline></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>

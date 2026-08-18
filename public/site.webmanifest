@@ -1,0 +1,22 @@
+{
+  "name": "RCCG Victory House Wichita",
+  "short_name": "Victory House",
+  "description": "The Redeemed Christian Church of God Victory House Wichita.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#e9dfcc",
+  "theme_color": "#17232e",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/church-logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}

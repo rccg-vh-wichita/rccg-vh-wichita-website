@@ -1,6 +1,4 @@
 ---
-import { withBase } from '../../utils/paths';
-
 export function getStaticPaths() {
   const legacySlugs = [
     '20th-anniversary-of-rccg-victory-house-wichita',
@@ -26,5 +24,5 @@ export function getStaticPaths() {
   return legacySlugs.map((slug) => ({ params: { slug } }));
 }
 
-return Astro.redirect(withBase('/events/'), 301);
+return Astro.redirect('/events/', 301);
 ---

@@ -3,14 +3,15 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import VisitCTA from '../components/VisitCTA.astro';
 import gathering from '../assets/images/gathering.jpg';
-import leadPastors from '../assets/images/lead-pastors-sam-jane.jpeg';
+import leadPastors from '../assets/images/lead-pastors-sam-jane.jpg';
 import prayer from '../assets/images/prayer.jpg';
 import { leaders } from '../data/site';
 ---
 
 <BaseLayout
-  title="About Us | RCCG Victory House Wichita"
-  description="Discover the story, vision, pastors, and leadership of RCCG Victory House Wichita."
+  title="About Our Church | RCCG Victory House Wichita"
+  description="Learn the story, vision, beliefs, and leadership of RCCG Victory House Wichita, serving Wichita, Kansas since May 2003."
+  imageAlt="RCCG Victory House Wichita church family"
 >
   <section class="about-hero">
     <span class="about-year" aria-hidden="true">2003</span>
@@ -85,8 +86,8 @@ import { leaders } from '../data/site';
           <Image
             src={leadPastors}
             alt="Pastor Sam and Pastor Jane Kayode"
-            width={1800}
-            widths={[640, 960, 1400, 1800, 2200]}
+            width={2048}
+            widths={[640, 960, 1400, 1800, 2048]}
             sizes="(max-width: 800px) 100vw, 50vw"
           />
         </div>
@@ -380,7 +381,7 @@ import { leaders } from '../data/site';
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center 42%;
   }
 
   .pastors-media > span {
