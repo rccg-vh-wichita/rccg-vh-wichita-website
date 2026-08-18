@@ -29,7 +29,9 @@ const socialImage = new URL(withBase(image), Astro.site);
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href={withBase('/church-logo.png')} type="image/png" />
+    <link rel="icon" href={withBase('/favicon-32.png')} type="image/png" sizes="32x32" />
+    <link rel="icon" href={withBase('/favicon-192.png')} type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} sizes="180x180" />
     <title>{title}</title>
   </head>
   <body>

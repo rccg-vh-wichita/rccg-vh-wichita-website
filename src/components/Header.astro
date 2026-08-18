@@ -1,7 +1,7 @@
 ---
 import Arrow from './Arrow.astro';
 import { Image } from 'astro:assets';
-import churchLogo from '../assets/images/brand.png';
+import churchLogo from '../assets/images/victory-house-logo.png';
 import { mainNav } from '../data/site';
 import { withBase } from '../utils/paths';
 
@@ -13,11 +13,10 @@ const isHome = current === homePath;
 <header class:list={['site-header', { 'over-hero': isHome }]} data-header>
   <div class="header-inner">
     <a class="brand" href={homePath} aria-label="RCCG Victory House Wichita home">
-      <Image class="brand-logo" src={churchLogo} alt="" width={56} height={56} />
-      <span class="brand-type">
-        <strong>RCCG Victory House Wichita</strong>
-        <span>Redeemed Christian Church of God</span>
+      <span class="brand-mark" aria-hidden="true">
+        <Image class="brand-logo" src={churchLogo} alt="" width={132} height={100} />
       </span>
+      <span class="sr-only">RCCG Victory House Wichita</span>
     </a>
 
     <nav class="desktop-nav" aria-label="Primary navigation" data-desktop-nav>
@@ -77,7 +76,7 @@ const isHome = current === homePath;
     height: 100%;
     margin-inline: auto;
     display: grid;
-    grid-template-columns: minmax(300px, 1fr) auto auto;
+    grid-template-columns: minmax(180px, 1fr) auto auto;
     align-items: center;
     gap: 24px;
   }
@@ -86,37 +85,31 @@ const isHome = current === homePath;
     display: inline-flex;
     width: max-content;
     align-items: center;
-    gap: 11px;
     color: inherit;
   }
 
+  .brand-mark {
+    display: grid;
+    width: 112px;
+    height: 72px;
+    padding: 4px 7px;
+    overflow: hidden;
+    place-items: center;
+    border: 1px solid rgba(23, 35, 46, 0.08);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(8, 23, 37, 0.13);
+    transition: transform 220ms cubic-bezier(.22, 1, .36, 1), box-shadow 220ms ease;
+  }
+
+  .brand:hover .brand-mark {
+    transform: translateY(-1px);
+    box-shadow: 0 11px 28px rgba(8, 23, 37, 0.17);
+  }
+
   .brand :global(.brand-logo) {
-    width: 58px;
-    height: 58px;
-    border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(23, 35, 46, 0.12);
-  }
-
-  .brand-type {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.05;
-  }
-
-  .brand-type strong {
-    font-family: var(--font-display);
-    font-size: 1.03rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-  }
-
-  .brand-type span {
-    margin-top: 5px;
-    font-size: 0.5rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    opacity: 0.72;
+    width: 98px;
+    height: auto;
   }
 
   .desktop-nav {
@@ -256,17 +249,15 @@ const isHome = current === homePath;
       display: none;
     }
 
+    .brand-mark {
+      width: 92px;
+      height: 58px;
+      padding: 3px 5px;
+      border-radius: 10px;
+    }
+
     .brand :global(.brand-logo) {
-      width: 46px;
-      height: 46px;
-    }
-
-    .brand-type strong {
-      font-size: 0.86rem;
-    }
-
-    .brand-type span {
-      font-size: 0.43rem;
+      width: 82px;
     }
 
     .menu-toggle {

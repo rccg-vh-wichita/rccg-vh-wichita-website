@@ -42,7 +42,7 @@ The following high-resolution Wix originals were recovered and renamed for maint
 - `src/assets/images/choir.jpg` — originally `20TH ANN (116).jpg`
 - `src/assets/images/worship.jpg` — originally `Photo Sep 03 2023, 10 18 04 PM_edited.jpg`
 - `src/assets/images/prayer.jpg` — originally `20TH ANN (6).jpg`
-- `src/assets/images/brand.png` — the square RCCG VH Wichita identity image
+- `src/assets/images/victory-house-logo.png` — the current Victory House Wichita identity used in the header and footer
 
 These images are reused at different crops across the new site. Additional team portraits named in search indexing were not publicly recoverable at original quality and were not replaced with invented or stock portraits.
 
