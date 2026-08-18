@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import VisitCTA from '../components/VisitCTA.astro';
-import gathering from '../assets/images/gathering.jpg';
+import worshipperSinging from '../assets/images/woman-singing-worship.png';
 import leadPastors from '../assets/images/lead-pastors-sam-jane.jpg';
 import prayer from '../assets/images/prayer.jpg';
 import { leaders } from '../data/site';
@@ -30,7 +30,7 @@ import { leaders } from '../data/site';
       </div>
       <div class="about-collage">
         <div class="about-image-main">
-          <Image src={gathering} alt="Victory House members gathered in worship" width={1400} widths={[720, 1000, 1400]} sizes="(max-width: 850px) 100vw, 52vw" loading="eager" />
+          <Image src={worshipperSinging} alt="A Victory House member singing during worship" width={1400} widths={[720, 1000, 1400]} sizes="(max-width: 850px) 100vw, 52vw" loading="eager" />
         </div>
         <div class="about-image-small">
           <Image src={prayer} alt="Members of Victory House singing and praying" width={700} widths={[400, 600, 700]} sizes="(max-width: 850px) 45vw, 20vw" loading="eager" />

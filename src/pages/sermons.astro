@@ -11,6 +11,27 @@ import { church } from '../data/site';
 
 // Keep the finished teaser available for a future launch without exposing it today.
 const sermonNotesAvailable = false;
+
+const socialChannels = [
+  {
+    name: 'YouTube',
+    invitation: 'Watch & subscribe',
+    description: 'Services, sermons, and worship.',
+    href: church.youtube
+  },
+  {
+    name: 'Instagram',
+    invitation: 'Follow & share',
+    description: 'Photos and moments from church life.',
+    href: church.instagram
+  },
+  {
+    name: 'Facebook',
+    invitation: 'Follow & like',
+    description: 'Event announcements and church updates.',
+    href: church.facebook
+  }
+];
 ---
 
 <BaseLayout
@@ -44,6 +65,39 @@ const sermonNotesAvailable = false;
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="socials section" aria-labelledby="socials-title">
+    <div class="wrap socials-grid">
+      <div class="socials-intro reveal">
+        <div>
+          <p class="eyebrow">Stay connected</p>
+          <h2 class="title" id="socials-title">Stay in touch during the week.</h2>
+        </div>
+        <p>Follow us for sermons, church photos, event announcements, and updates from Victory House.</p>
+      </div>
+
+      <div class="social-board">
+        {socialChannels.map((channel, index) => (
+          <a
+            class={`social-card social-card-${index + 1} reveal`}
+            href={channel.href}
+            target="_blank"
+            rel="noreferrer"
+            style={`--delay: ${index * 90}ms`}
+            aria-label={`${channel.invitation} on ${channel.name}`}
+          >
+            <span class="social-ghost" aria-hidden="true">{channel.name}</span>
+            <span class="social-number">{String(index + 1).padStart(2, '0')}</span>
+            <span class="social-platform">
+              <strong>{channel.name}</strong>
+              <small>{channel.description}</small>
+            </span>
+            <span class="social-action">{channel.invitation} <Arrow /></span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -96,6 +150,184 @@ const sermonNotesAvailable = false;
     border: 0;
   }
 
+  .socials {
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+    background: var(--forest-deep);
+  }
+
+  .socials.section {
+    padding-block: clamp(56px, 5.5vw, 78px);
+  }
+
+  .socials::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: min(34vw, 460px);
+    height: 5px;
+    background: var(--gold);
+    content: '';
+  }
+
+  .socials-grid {
+    display: grid;
+    gap: clamp(26px, 2.6vw, 36px);
+  }
+
+  .socials-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.58fr);
+    align-items: end;
+    gap: clamp(36px, 7vw, 96px);
+  }
+
+  .socials-intro .eyebrow {
+    color: var(--gold);
+  }
+
+  .socials-intro .title {
+    max-width: 500px;
+    margin-bottom: 0;
+    font-size: clamp(2.6rem, 3.6vw, 4rem);
+    line-height: 0.94;
+  }
+
+  .socials-intro > p:last-child {
+    max-width: 470px;
+    margin: 0 0 8px;
+    color: rgba(255, 247, 235, 0.65);
+  }
+
+  .social-board {
+    display: grid;
+    grid-template-columns: minmax(0, 1.14fr) minmax(290px, 0.86fr);
+    grid-template-rows: repeat(2, minmax(142px, auto));
+    gap: 10px;
+  }
+
+  .social-card {
+    display: flex;
+    position: relative;
+    isolation: isolate;
+    min-height: 142px;
+    padding: clamp(18px, 1.6vw, 24px);
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 420ms ease;
+    transition-delay: var(--delay, 0ms);
+  }
+
+  .social-ghost {
+    position: absolute;
+    top: -0.22em;
+    right: -0.08em;
+    z-index: -1;
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 5.4vw, 5.4rem);
+    font-weight: 600;
+    letter-spacing: -0.07em;
+    line-height: 0.85;
+    opacity: 0.055;
+    pointer-events: none;
+    transform: translateX(4%);
+    transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+    white-space: nowrap;
+  }
+
+  .social-card-1 {
+    min-height: 294px;
+    grid-row: 1 / 3;
+    color: var(--forest-deep);
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .social-card-2 {
+    color: var(--forest-deep);
+    background: var(--aqua-wash);
+    border-color: var(--aqua-wash);
+  }
+
+  .social-card-3 {
+    color: var(--white);
+    background: var(--coral);
+    border-color: var(--coral);
+  }
+
+  .social-card:hover,
+  .social-card:focus-visible {
+    box-shadow: 0 18px 42px rgba(4, 11, 17, 0.2);
+    transform: translateY(-3px);
+  }
+
+  .social-card:hover .social-ghost,
+  .social-card:focus-visible .social-ghost {
+    transform: translateX(0);
+  }
+
+  .social-number {
+    position: relative;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .social-platform {
+    display: flex;
+    position: relative;
+    min-width: 0;
+    margin-top: auto;
+    flex-direction: column;
+  }
+
+  .social-platform strong {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 2.75vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+  }
+
+  .social-card-1 .social-platform strong {
+    font-size: clamp(3.2rem, 4.85vw, 5.1rem);
+  }
+
+  .social-platform small {
+    max-width: 330px;
+    margin-top: 5px;
+    color: currentColor;
+    font-size: 0.74rem;
+    opacity: 0.68;
+  }
+
+  .social-action {
+    display: inline-flex;
+    position: relative;
+    width: fit-content;
+    margin-top: clamp(9px, 1vw, 13px);
+    align-items: center;
+    gap: 12px;
+    color: currentColor;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .social-action :global(svg) {
+    width: 18px;
+    transition: transform 260ms ease;
+  }
+
+  .social-card:hover .social-action :global(svg),
+  .social-card:focus-visible .social-action :global(svg) {
+    transform: translateX(6px);
+  }
+
   .notes {
     color: var(--white);
     background: var(--forest-deep);
@@ -121,8 +353,63 @@ const sermonNotesAvailable = false;
 
   @media (max-width: 850px) {
     .watch-grid,
-    .notes-grid {
+    .notes-grid,
+    .socials-intro {
       grid-template-columns: 1fr;
+    }
+
+    .socials-intro > p:last-child {
+      margin: 0;
+    }
+
+    .socials-intro {
+      gap: 24px;
+    }
+
+    .socials-intro .title {
+      max-width: 560px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .socials.section {
+      padding-block: 50px;
+    }
+
+    .socials-grid {
+      gap: 24px;
+    }
+
+    .socials-intro {
+      gap: 16px;
+    }
+
+    .socials-intro .title {
+      font-size: clamp(2.4rem, 11vw, 3.05rem);
+    }
+
+    .social-board {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+    }
+
+    .social-card,
+    .social-card-1 {
+      min-height: 144px;
+      padding: 18px 20px;
+      grid-row: auto;
+    }
+
+    .social-card-1 {
+      min-height: 168px;
+    }
+
+    .social-card-1 .social-platform strong {
+      font-size: clamp(3.05rem, 13vw, 4.2rem);
+    }
+
+    .social-action {
+      margin-top: 10px;
     }
   }
 </style>

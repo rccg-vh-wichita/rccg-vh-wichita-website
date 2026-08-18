@@ -7,7 +7,9 @@ import { withBase } from '../utils/paths';
 
 const current = Astro.url.pathname;
 const homePath = withBase('/');
+const resourcesPath = withBase('/resources/');
 const isHome = current === homePath;
+const isResources = current.startsWith(resourcesPath);
 ---
 
 <header class:list={['site-header', { 'over-hero': isHome }]} data-header>
@@ -26,6 +28,7 @@ const isHome = current === homePath;
           {item.label}
         </a>
       ))}
+      <a class:list={{ active: isResources }} href={resourcesPath}>Resources</a>
       <span class="nav-tracer" aria-hidden="true"></span>
     </nav>
 
@@ -46,7 +49,7 @@ const isHome = current === homePath;
       <a href={homePath}>Home</a>
       {mainNav.map((item) => <a href={item.href}>{item.label}</a>)}
       <a href={withBase('/visit-us/')}>Plan a visit</a>
-      <a href={withBase('/resources/')}>Resources</a>
+      <a href={resourcesPath}>Resources</a>
     </nav>
     <p>1701 S Sedgwick St<br />Wichita, KS 67213</p>
   </div>

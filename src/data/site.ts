@@ -15,7 +15,7 @@ export const church = {
     'https://www.google.com/maps/dir/?api=1&destination=1701+S+Sedgwick+St+Wichita+KS+67213',
   youtube: 'https://www.youtube.com/@rccgvhwichita',
   instagram: 'https://www.instagram.com/victoryhousewichita/',
-  facebook: 'https://www.facebook.com/groups/139371049459901'
+  facebook: 'https://www.facebook.com/rccgvhwichita/'
 };
 
 export const mainNav = [
@@ -103,7 +103,6 @@ export const ministries = [
 ];
 
 export const leaders = [
-  { name: 'Pastor Olufunke', role: 'Assistant Pastor' },
   { name: 'Kennedy Opoku', role: 'Minister & Sunday School Director' },
   { name: 'Rex Bello', role: 'Minister, Protocol Director & Choir Director' },
   {
