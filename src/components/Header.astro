@@ -36,7 +36,12 @@ const isVisit = current.startsWith(visitPath);
 
     <a class:list={['visit-btn', { active: isVisit }]} href={visitPath} aria-current={isVisit ? 'page' : undefined}>
       Plan a visit
-      <Arrow />
+      {isVisit ? (
+        <span class="visit-state-icon" aria-hidden="true">
+          <Arrow />
+          <span class="visit-current-mark">&#10003;</span>
+        </span>
+      ) : <Arrow />}
     </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
@@ -223,9 +228,83 @@ const isVisit = current.startsWith(visitPath);
   }
 
   .visit-btn.active {
-    color: var(--white);
-    background: var(--forest-deep);
-    border-color: var(--forest-deep);
+    color: rgba(23, 35, 46, 0.76);
+    background: rgba(255, 250, 240, 0.38);
+    border-color: rgba(23, 35, 46, 0.24);
+    box-shadow: inset 0 -2px 0 var(--forest);
+  }
+
+  .visit-btn.active:hover {
+    color: rgba(23, 35, 46, 0.86);
+    background: rgba(255, 250, 240, 0.46);
+    border-color: rgba(23, 35, 46, 0.3);
+    transform: none;
+  }
+
+  .visit-state-icon {
+    position: relative;
+    display: grid;
+    width: 16px;
+    height: 16px;
+    place-items: center;
+  }
+
+  .visit-state-icon :global(svg) {
+    position: absolute;
+    inset: 0;
+    animation: visit-arrow-resolve 620ms cubic-bezier(.22, 1, .36, 1) forwards;
+    transform-origin: center;
+  }
+
+  .visit-current-mark {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: var(--forest);
+    font-size: 0.82rem;
+    font-weight: 800;
+    line-height: 1;
+    opacity: 0;
+    animation: visit-check-arrive 420ms 240ms cubic-bezier(.22, 1, .36, 1) forwards;
+  }
+
+  @keyframes visit-arrow-resolve {
+    0% {
+      opacity: 1;
+      transform: translateX(0) rotate(0deg) scale(1);
+    }
+    52% {
+      opacity: 0.75;
+      transform: translateX(1px) rotate(34deg) scale(0.82);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(0) rotate(44deg) scale(0.55);
+    }
+  }
+
+  @keyframes visit-check-arrive {
+    0% {
+      opacity: 0;
+      transform: rotate(-28deg) scale(0.62);
+    }
+    100% {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .visit-state-icon :global(svg) {
+      display: none;
+      animation: none;
+    }
+
+    .visit-current-mark {
+      opacity: 1;
+      animation: none;
+    }
   }
 
   .over-hero .visit-btn {
