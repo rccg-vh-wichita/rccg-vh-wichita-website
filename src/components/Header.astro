@@ -8,8 +8,10 @@ import { withBase } from '../utils/paths';
 const current = Astro.url.pathname;
 const homePath = withBase('/');
 const resourcesPath = withBase('/resources/');
+const visitPath = withBase('/visit-us/');
 const isHome = current === homePath;
 const isResources = current.startsWith(resourcesPath);
+const isVisit = current.startsWith(visitPath);
 ---
 
 <header class:list={['site-header', { 'over-hero': isHome }]} data-header>
@@ -32,7 +34,7 @@ const isResources = current.startsWith(resourcesPath);
       <span class="nav-tracer" aria-hidden="true"></span>
     </nav>
 
-    <a class="visit-btn" href={withBase('/visit-us/')}>
+    <a class:list={['visit-btn', { active: isVisit }]} href={visitPath} aria-current={isVisit ? 'page' : undefined}>
       Plan a visit
       <Arrow />
     </a>
@@ -220,6 +222,12 @@ const isResources = current.startsWith(resourcesPath);
     transform: translateY(-1px);
   }
 
+  .visit-btn.active {
+    color: var(--white);
+    background: var(--forest-deep);
+    border-color: var(--forest-deep);
+  }
+
   .over-hero .visit-btn {
     border-color: rgba(255, 254, 249, 0.64);
   }
@@ -374,8 +382,15 @@ const isResources = current.startsWith(resourcesPath);
     nav.classList.add('is-ready');
   };
 
-  const activeLink = links.find((link) => link.classList.contains('active')) ?? links[0];
-  const resetTracer = () => moveTracer(activeLink);
+  const activeLink = links.find((link) => link.classList.contains('active'));
+  const resetTracer = () => {
+    if (activeLink) {
+      moveTracer(activeLink);
+      return;
+    }
+
+    nav?.classList.remove('is-ready');
+  };
 
   links.forEach((link) => link.addEventListener('pointerenter', () => moveTracer(link)));
   nav?.addEventListener('pointerleave', resetTracer);
